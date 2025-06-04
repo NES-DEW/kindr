@@ -15,3 +15,6 @@ quarto headers and chunks
 \description{
 Provided a session number, generates a quarto header and then one chunk for each milestone sharing the same session number
 }
+\examples{
+build_quarto(1)
+}

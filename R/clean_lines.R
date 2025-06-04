@@ -2,10 +2,11 @@
 #'
 #' @param file
 #'
-#' @return
+#' @return .txt file
 #' @export
 #'
 #' @examples
+#' clean_lines("example/example.txt")
 clean_lines <- function(file) {
   input <- readr::read_lines(file)
 

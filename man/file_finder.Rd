@@ -7,8 +7,18 @@
 file_finder(session_n, path, pattern)
 }
 \arguments{
-\item{pattern}{}
+\item{session_n}{numeric session number}
+
+\item{path}{root file path}
+
+\item{pattern}{3-digit file extension}
+}
+\value{
+file path
 }
 \description{
 Find file based on session number, path, and pattern
+}
+\examples{
+file_finder(1, "/example", ".Rmd")
 }

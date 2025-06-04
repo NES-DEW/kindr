@@ -6,6 +6,7 @@
 #' @export
 #'
 #' @examples
+#' build_quarto(1)
 build_quarto <- function(session_n) {
 
   milestone_input_fns <- paths_from_session(session_n)[[3]]
@@ -25,7 +26,7 @@ build_quarto <- function(session_n) {
     milestone_chunk = purrr::map(milestone_input_fns, make_chunk)
   )
 
-  title <- paste0('title: "KIND ', course_name_human, '"')
+  title <- paste0('title: "', course_name_human, '"')
   subtitle <- paste0('subtitle: "session ', session_n, '"')
   auth <- paste0('author: "', author, '"')
 
@@ -37,8 +38,11 @@ build_quarto <- function(session_n) {
       auth,
       "format: ",
       "    revealjs:",
+      "        incremental: true",
       paste0('        logo: "', logo, '"'),
       paste0('        css: "', css_path, '"'),
+      "        embed-resources: true",
+      '        bibliography: "..//src//references.bib"',
       'scrollable: true',
       'smaller: true',
       'execute: ',

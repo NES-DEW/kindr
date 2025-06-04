@@ -9,6 +9,12 @@ clean_lines(file)
 \arguments{
 \item{file}{}
 }
+\value{
+.txt file
+}
 \description{
 Cleans out empty lines at head and foot of files
+}
+\examples{
+clean_lines("example/example.txt")
 }

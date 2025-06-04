@@ -2,10 +2,10 @@
 #'
 #' @param session_n
 #'
-#' @return
+#' @return quarto file
 #' @export
 #'
-#' @examples
+#' @examples join_milestones(1)
 join_milestones <- function(session_n) {
   quarto_input <- c(readr::read_lines(paths_from_session(session_n)[[4]]), "")
   text_input <- readr::read_lines(paths_from_session(session_n)[[2]])

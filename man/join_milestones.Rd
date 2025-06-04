@@ -9,6 +9,12 @@ join_milestones(session_n)
 \arguments{
 \item{session_n}{}
 }
+\value{
+quarto file
+}
 \description{
 Joins the milestones to their appropriate chunk in the quarto
+}
+\examples{
+join_milestones(1)
 }
