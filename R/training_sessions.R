@@ -3,6 +3,9 @@
 #' @param tr_type Training type
 #' @param start_date A ymd-formatted date
 #' @param end_date A ymd-formatted date
+#' @param session_level Training level required
+#' @param hide_area Hide the area column?
+#' @param n Number of sessions required
 #'
 #' @return Tibble with Session (with link), Date, Level
 #' @export
@@ -16,7 +19,8 @@ training_sessions <- function(tr_type = "all",
                               start_date = "today",
                               end_date = "2026-12-31",
                               session_level = "all",
-                              hide_area = FALSE) {
+                              hide_area = FALSE,
+                              n = 0) {
   sesh <- readr::read_csv(
     "https://raw.githubusercontent.com/NES-DEW/KIND-training/main/data/KIND_training_sessions.csv"
   )
@@ -65,23 +69,23 @@ training_sessions <- function(tr_type = "all",
     )) |>
     dplyr::mutate(
       desc2 = dplyr::case_when(
-        stringr::str_detect(Level, "pre-beginner") ~ "🥬: <b>pre-beginner-level</b>",
+        stringr::str_detect(Level, "pre-beginner") ~ "\U0001f4bc: <b>pre-beginner-level</b>",
         stringr::str_detect(Level, "beginner") ~ paste0(
           "<style='color:red'>",
-          "🌶",
+          "\U0001f336",
           "</style> :<b>beginner-level</b>"
         ),
         stringr::str_detect(Level, "inter") ~ paste0(
           "<style='color:red'>",
-          "🌶🌶",
+          "\U0001f336\U0001f336",
           "</style>: <b>intermediate-level</b>"
         ),
         stringr::str_detect(Level, "advanced") ~ paste0(
           "<style='color:red'>",
-          "🌶🌶🌶",
+          "\U0001f336\U0001f336\U0001f336",
           "</style>: <b>advanced-level</b>"
         ),
-        stringr::str_detect(Level, "manag") ~ "💼: <b>non-technical</b>"
+        stringr::str_detect(Level, "manag") ~ "\U0001f96c: <b>non-technical</b>"
       )
     ) |>
     dplyr::mutate(end = start + lubridate::minutes(`Duration (minutes)`)) |>

@@ -2,6 +2,7 @@
 #'
 #' @param session A session title
 #' @param date A string in YYYY-MM-DD format
+#' @param type Type of training
 #'
 #' @return a feedback url
 #' @export

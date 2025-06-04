@@ -4,12 +4,14 @@
 \alias{feedback_url}
 \title{Get a feedback URL from a session title and date}
 \usage{
-feedback_url(session, date)
+feedback_url(session, date, type = "training")
 }
 \arguments{
 \item{session}{A session title}
 
 \item{date}{A string in YYYY-MM-DD format}
+
+\item{type}{Type of training}
 }
 \value{
 a feedback url

@@ -7,7 +7,10 @@
 training_sessions(
   tr_type = "all",
   start_date = "today",
-  end_date = lubridate::dmy("01-12-2025")
+  end_date = "2026-12-31",
+  session_level = "all",
+  hide_area = FALSE,
+  n = 0
 )
 }
 \arguments{
@@ -16,6 +19,12 @@ training_sessions(
 \item{start_date}{A ymd-formatted date}
 
 \item{end_date}{A ymd-formatted date}
+
+\item{session_level}{Training level required}
+
+\item{hide_area}{Hide the area column?}
+
+\item{n}{Number of sessions required}
 }
 \value{
 Tibble with Session (with link), Date, Level
@@ -25,6 +34,6 @@ Find current training for a particular platform
 }
 \examples{
 training_sessions("R")
-training_sessions("Excel", "01-07-2024")
+training_sessions("Excel", "2024-07-01")
 
 }
