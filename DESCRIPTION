@@ -4,7 +4,7 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Brendan", "Clarke", , "brendan.clarke2@nhs.scot", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6159-4928"))
-Description: This package is meant for staff working for NHS Education for Scotland's KIND network programme to develop branded training materials
+Description: This package is meant for staff working for NHS Education for Scotland's KIND network programme to develop branded training materials.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -17,15 +17,9 @@ Suggests:
 Config/testthat/edition: 3
 Imports: 
     dplyr,
-    purrr,
     readr,
-    curl,
     glue,
     kableExtra,
     lubridate, 
-    quarto,
-    rstudioapi,
     scales,
-    tibble,
-    stringr,
-    tools
+    stringr
