@@ -117,6 +117,14 @@ training_sessions <- function(tr_type = "all",
   if(output_type == "kableExtra"){
     output |>
       kableExtra::kbl(escape = FALSE)
+  } else if(output_type == "tibble") {
+    output |>
+      tidyr::separate_wider_delim(Session, "'", names_sep = "_") |>
+      dplyr::select(-Session_1) |>
+      dplyr::rename(url = Session_2, Session = Session_3) |>
+      dplyr::mutate(Session  = stringr::str_remove_all(Session, ">|<\\/a"))|>
+      dplyr::mutate(Level = stringr::str_remove_all(Level, "\\<.*?\\>")) |>
+      dplyr::mutate(Level = stringr::str_replace(Level, " :", ": "))
   } else {
     output
   }
