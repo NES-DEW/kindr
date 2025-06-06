@@ -69,27 +69,7 @@ training_sessions <- function(tr_type = "all",
         "managerial"
       )
     )) |>
-    dplyr::mutate(
-      desc2 = dplyr::case_when(
-        stringr::str_detect(Level, "pre-beginner") ~ "\U0001f4bc: <b>pre-beginner-level</b>",
-        stringr::str_detect(Level, "beginner") ~ paste0(
-          "<style='color:red'>",
-          "\U0001f336",
-          "</style> :<b>beginner-level</b>"
-        ),
-        stringr::str_detect(Level, "inter") ~ paste0(
-          "<style='color:red'>",
-          "\U0001f336\U0001f336",
-          "</style>: <b>intermediate-level</b>"
-        ),
-        stringr::str_detect(Level, "advanced") ~ paste0(
-          "<style='color:red'>",
-          "\U0001f336\U0001f336\U0001f336",
-          "</style>: <b>advanced-level</b>"
-        ),
-        stringr::str_detect(Level, "manag") ~ "\U0001f96c: <b>non-technical</b>"
-      )
-    ) |>
+    dplyr::mutate(desc2 = chilli_adder(Level)) |>
     dplyr::mutate(end = start + lubridate::minutes(`Duration (minutes)`)) |>
     dplyr::mutate(friendly_date = paste0(format(start, "%H:%M"), "-", nice_date(end))) |>
     dplyr::select(
@@ -118,14 +98,20 @@ training_sessions <- function(tr_type = "all",
     output |>
       kableExtra::kbl(escape = FALSE)
   } else if(output_type == "tibble") {
-    output |>
-      tidyr::separate_wider_delim(Session, "'", names_sep = "_") |>
-      dplyr::select(-Session_1) |>
-      dplyr::rename(url = Session_2, Session = Session_3) |>
-      dplyr::mutate(Session  = stringr::str_remove_all(Session, ">|<\\/a"))|>
-      dplyr::mutate(Level = stringr::str_remove_all(Level, "\\<.*?\\>")) |>
-      dplyr::mutate(Level = stringr::str_replace(Level, " :", ": "))
-  } else {
+    # output |>
+    #   tidyr::separate_wider_delim(Session, "'", names_sep = "_") |>
+    #   dplyr::select(-Session_1) |>
+    #   dplyr::rename(url = Session_2, Session = Session_3) |>
+    #   dplyr::mutate(Session  = stringr::str_remove_all(Session, ">|<\\/a"))|>
+    #   dplyr::mutate(Level = stringr::str_remove_all(Level, "\\<.*?\\>")) |>
+    #   dplyr::mutate(Level = stringr::str_replace(Level, " :", ": "))
+    schedule |>
+      dplyr::left_join(sesh, by = dplyr::join_by(`session title` == Title)) |>
+      dplyr::mutate(Level2 = chilli_adder(Level)) |>
+      dplyr::mutate(end = start + lubridate::minutes(`Duration (minutes)`)) |>
+      dplyr::mutate(friendly_date = paste0(format(start, "%H:%M"), "-", nice_date(end))) |>
+      dplyr::select(title = `session title`, start, end, duration = `Duration (minutes)`, friendly_date, area = `Platform / area`, Level, Level2, Description, Prerequsites, url)
+    } else {
     output
   }
 

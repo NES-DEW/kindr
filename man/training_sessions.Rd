@@ -10,7 +10,8 @@ training_sessions(
   end_date = "2026-12-31",
   session_level = "all",
   hide_area = FALSE,
-  n = 0
+  n = 0,
+  output_type = "kableExtra"
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ training_sessions(
 \item{hide_area}{Hide the area column?}
 
 \item{n}{Number of sessions required}
+
+\item{output_type}{Output type required}
 }
 \value{
 Tibble with Session (with link), Date, Level
