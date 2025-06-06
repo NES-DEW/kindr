@@ -6,6 +6,7 @@
 #' @param session_level Training level required
 #' @param hide_area Hide the area column?
 #' @param n Number of sessions required
+#' @param output_type Output type required
 #'
 #' @return Tibble with Session (with link), Date, Level
 #' @export
@@ -20,7 +21,8 @@ training_sessions <- function(tr_type = "all",
                               end_date = "2026-12-31",
                               session_level = "all",
                               hide_area = FALSE,
-                              n = 0) {
+                              n = 0,
+                              output_type = "kableExtra") {
   sesh <- readr::read_csv(
     "https://raw.githubusercontent.com/NES-DEW/KIND-training/main/data/KIND_training_sessions.csv"
   )
@@ -112,7 +114,12 @@ training_sessions <- function(tr_type = "all",
       dplyr::select(-Area)
   }
 
-  output |>
-    kableExtra::kbl(escape = FALSE)
+  if(output_type == "kableExtra"){
+    output |>
+      kableExtra::kbl(escape = FALSE)
+  } else {
+    output
+  }
+
 
 }
