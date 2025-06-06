@@ -17,7 +17,7 @@ training_sessions(
 \arguments{
 \item{tr_type}{Training type}
 
-\item{start_date}{A ymd-formatted date}
+\item{start_date}{A ymd-formatted date. We add 1 day to the date, so that you don't have to.}
 
 \item{end_date}{A ymd-formatted date}
 

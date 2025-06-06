@@ -1,7 +1,7 @@
 #' Find current training for a particular platform
 #'
 #' @param tr_type Training type
-#' @param start_date A ymd-formatted date
+#' @param start_date A ymd-formatted date. We add 1 day to the date, so that you don't have to.
 #' @param end_date A ymd-formatted date
 #' @param session_level Training level required
 #' @param hide_area Hide the area column?
@@ -27,6 +27,8 @@ training_sessions <- function(tr_type = "all",
     "https://raw.githubusercontent.com/NES-DEW/KIND-training/main/data/KIND_training_sessions.csv"
   )
 
+
+
   schedule <- readr::read_csv(
     "https://raw.githubusercontent.com/NES-DEW/KIND-training/main/data/training_schedule.csv"
   )
@@ -44,8 +46,11 @@ training_sessions <- function(tr_type = "all",
       dplyr::filter(start > lubridate::today() + lubridate::days(1)) |>
       dplyr::filter(start < end_date)
   } else {
+
+    start_date <- lubridate::ymd(start_date) + lubridate::days(1)
+
     schedule <- schedule |>
-      dplyr::filter(start > lubridate::ymd(start_date)) |>
+      dplyr::filter(start > start_date) |>
       dplyr::filter(start < lubridate::ymd(end_date))
   }
 
@@ -98,13 +103,6 @@ training_sessions <- function(tr_type = "all",
     output |>
       kableExtra::kbl(escape = FALSE)
   } else if(output_type == "tibble") {
-    # output |>
-    #   tidyr::separate_wider_delim(Session, "'", names_sep = "_") |>
-    #   dplyr::select(-Session_1) |>
-    #   dplyr::rename(url = Session_2, Session = Session_3) |>
-    #   dplyr::mutate(Session  = stringr::str_remove_all(Session, ">|<\\/a"))|>
-    #   dplyr::mutate(Level = stringr::str_remove_all(Level, "\\<.*?\\>")) |>
-    #   dplyr::mutate(Level = stringr::str_replace(Level, " :", ": "))
     schedule |>
       dplyr::left_join(sesh, by = dplyr::join_by(`session title` == Title)) |>
       dplyr::mutate(Level2 = chilli_adder(Level)) |>
