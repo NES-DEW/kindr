@@ -23,6 +23,13 @@ training_sessions <- function(tr_type = "all",
                               hide_area = FALSE,
                               n = 0,
                               output_type = "kableExtra") {
+
+  material_check <- function(url){
+    if(!is.na(url)) paste0("<a href='", url, "'>Session materials</a>")
+    else ""
+
+    }
+
   sesh <- readr::read_csv(
     "https://raw.githubusercontent.com/NES-DEW/KIND-training/main/data/KIND_training_sessions.csv"
   )
@@ -74,11 +81,13 @@ training_sessions <- function(tr_type = "all",
         "managerial"
       )
     )) |>
-    dplyr::mutate(desc2 = chilli_adder(Level)) |>
+    dplyr::mutate(desc2 = KINDR::chilli_adder(Level)) |>
     dplyr::mutate(end = start + lubridate::minutes(`Duration (minutes)`)) |>
     dplyr::mutate(friendly_date = paste0(format(start, "%H:%M"), "-", nice_date(end))) |>
+    dplyr::mutate(URL = material_check(URL))|>
     dplyr::select(
-      Session = linky,
+      `Booking Link` = linky,
+      Materials = URL,
       Date = friendly_date,
       Level2 = Level,
       Area = `Platform / area`,
@@ -105,10 +114,10 @@ training_sessions <- function(tr_type = "all",
   } else if(output_type == "tibble") {
     schedule |>
       dplyr::left_join(sesh, by = dplyr::join_by(`session title` == Title)) |>
-      dplyr::mutate(Level2 = chilli_adder(Level)) |>
+      dplyr::mutate(Level2 = KINDR::chilli_adder(Level)) |>
       dplyr::mutate(end = start + lubridate::minutes(`Duration (minutes)`)) |>
       dplyr::mutate(friendly_date = paste0(format(start, "%H:%M"), "-", nice_date(end))) |>
-      dplyr::select(title = `session title`, start, end, duration = `Duration (minutes)`, friendly_date, area = `Platform / area`, Level, Level2, Description, Prerequsites, url)
+      dplyr::select(title = `session title`, start, end, duration = `Duration (minutes)`, friendly_date, area = `Platform / area`, Level, Level2, Description, Prerequsites, url, URL)
     } else {
     output
   }
