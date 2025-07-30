@@ -41,7 +41,7 @@ training_sessions <- function(tr_type = "all",
   )
   if (tr_type != "all") {
     poss_sesh <- sesh |>
-      dplyr::filter(`Platform / area` == tr_type) |>
+      dplyr::filter(`Platform / area` %in% tr_type) |>
       dplyr::pull(Title)
 
     schedule <- schedule |>
