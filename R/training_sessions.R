@@ -39,9 +39,9 @@ training_sessions <- function(tr_type = "all",
   schedule <- readr::read_csv(
     "https://raw.githubusercontent.com/NES-DEW/KIND-training/main/data/training_schedule.csv"
   )
-  if (tr_type != "all") {
+   if (paste(tr_type, collapse = " ") != "all") {
     poss_sesh <- sesh |>
-      dplyr::filter(`Platform / area` == tr_type) |>
+      dplyr::filter(`Platform / area` %in% tr_type) |>
       dplyr::pull(Title)
 
     schedule <- schedule |>
