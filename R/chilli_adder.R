@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' chilli_adder("beginner")
-#' chilli_adder("intermediate", html = F)
+#' chilli_adder("intermediate", html = FALSE)
 chilli_adder <- function(str, html = T){
 
   str <- as.character(str)

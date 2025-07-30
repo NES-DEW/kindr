@@ -25,5 +25,5 @@ chilli_adder
 }
 \examples{
 chilli_adder("beginner")
-chilli_adder("intermediate", html = F)
+chilli_adder("intermediate", html = FALSE)
 }

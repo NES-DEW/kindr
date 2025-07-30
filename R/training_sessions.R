@@ -6,7 +6,7 @@
 #' @param session_level Training level required
 #' @param hide_area Hide the area column?
 #' @param n Number of sessions required
-#' @param output_type Output type required
+#' @param output_type Output type required: pick from kableExtra, tibble, DT
 #'
 #' @return Tibble with Session (with link), Date, Level
 #' @export
@@ -109,8 +109,10 @@ training_sessions <- function(tr_type = "all",
   }
 
   if(output_type == "kableExtra"){
+
     output |>
       kableExtra::kbl(escape = FALSE)
+
   } else if(output_type == "tibble") {
     schedule |>
       dplyr::left_join(sesh, by = dplyr::join_by(`session title` == Title)) |>
@@ -118,7 +120,12 @@ training_sessions <- function(tr_type = "all",
       dplyr::mutate(end = start + lubridate::minutes(`Duration (minutes)`)) |>
       dplyr::mutate(friendly_date = paste0(format(start, "%H:%M"), "-", nice_date(end))) |>
       dplyr::select(title = `session title`, start, end, duration = `Duration (minutes)`, friendly_date, area = `Platform / area`, Level, Level2, Description, Prerequsites, url, URL)
-    } else {
+  } else if(output_type == "DT") {
+
+    output |>
+      DT::datatable(escape = FALSE, filter = "top")
+
+  } else {
     output
   }
 

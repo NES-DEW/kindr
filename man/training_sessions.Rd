@@ -27,7 +27,7 @@ training_sessions(
 
 \item{n}{Number of sessions required}
 
-\item{output_type}{Output type required}
+\item{output_type}{Output type required: pick from kableExtra, tibble, DT}
 }
 \value{
 Tibble with Session (with link), Date, Level
