@@ -24,6 +24,8 @@ training_sessions <- function(tr_type = "all",
                               n = 0,
                               output_type = "kableExtra") {
 
+  session_level <- tolower(session_level)
+
   material_check <- function(url){
     if(!is.na(url)) paste0("<a href='", url, "'>Session materials</a>")
     else ""
