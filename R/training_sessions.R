@@ -69,36 +69,41 @@ training_sessions <- function(tr_type = "all",
       dplyr::slice(1:n)
   }
 
-  output <- schedule |>
-    dplyr::left_join(sesh, by = dplyr::join_by(`session title` == Title)) |>
-    dplyr::rowwise() |>
-    dplyr::mutate(linky = paste0("<a href='", url, "'>", `session title`, "</a>")) |>
-    dplyr::mutate(Level = factor(
-      Level,
-      levels = c(
-        "pre-beginner",
-        "beginner",
-        "intermediate",
-        "advanced",
-        "managerial"
-      )
-    )) |>
-    dplyr::mutate(desc2 = KINDR::chilli_adder(Level)) |>
-    dplyr::mutate(end = start + lubridate::minutes(`Duration (minutes)`)) |>
-    dplyr::mutate(friendly_date = paste0(format(start, "%H:%M"), "-", nice_date(end))) |>
-    dplyr::mutate(URL = material_check(URL))|>
-    dplyr::select(
-      `Booking Link` = linky,
-      Materials = URL,
-      Date = friendly_date,
-      Level2 = Level,
-      Area = `Platform / area`,
-      Level = desc2,
-      start
-    ) |>
-    dplyr::arrange(start, Level2) |>
-    dplyr::select(!c(Level2, start)) |>
-    dplyr::ungroup()
+  if(nrow(schedule) == 0) {
+    output <- schedule
+  } else {
+    output <- schedule |>
+      dplyr::left_join(sesh, by = dplyr::join_by(`session title` == Title)) |>
+      dplyr::rowwise() |>
+      dplyr::mutate(linky = paste0("<a href='", url, "'>", `session title`, "</a>")) |>
+      dplyr::mutate(Level = factor(
+        Level,
+        levels = c(
+          "pre-beginner",
+          "beginner",
+          "intermediate",
+          "advanced",
+          "managerial"
+        )
+      )) |>
+      dplyr::mutate(desc2 = KINDR::chilli_adder(Level)) |>
+      dplyr::mutate(end = start + lubridate::minutes(`Duration (minutes)`)) |>
+      dplyr::mutate(friendly_date = paste0(format(start, "%H:%M"), "-", nice_date(end))) |>
+      dplyr::mutate(URL = material_check(URL))|>
+      dplyr::select(
+        `Booking Link` = linky,
+        Materials = URL,
+        Date = friendly_date,
+        Level2 = Level,
+        Area = `Platform / area`,
+        Level = desc2,
+        start
+      ) |>
+      dplyr::arrange(start, Level2) |>
+      dplyr::select(!c(Level2, start)) |>
+      dplyr::ungroup()
+  }
+
 
   if (session_level != "all") {
     output <- output |>
