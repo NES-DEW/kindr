@@ -15,7 +15,7 @@ chilli_adder <- function(str, html = T){
 
   if(html){
     dplyr::case_when(
-      stringr::str_detect(str, "pre-beginner") ~ "\U0001f4bc: <b>pre-beginner-level</b>",
+      stringr::str_detect(str, "pre-beginner") ~ "\U0001f96c: <b>pre-beginner-level</b>",
       stringr::str_detect(str, "beginner") ~ paste0(
         "<style='color:red'>",
         "\U0001f336",
@@ -34,7 +34,7 @@ chilli_adder <- function(str, html = T){
       stringr::str_detect(str, "manag") ~ "\U0001f96c: <b>non-technical</b>")
   } else {
     dplyr::case_when(
-      stringr::str_detect(str, "pre-beginner") ~ "\U0001f4bc: pre-beginner",
+      stringr::str_detect(str, "pre-beginner") ~ "\U0001f96c: pre-beginner",
       stringr::str_detect(str, "beginner") ~ "\U0001f336: beginner-level",
       stringr::str_detect(str, "inter") ~ "\U0001f336\U0001f336: intermediate-level",
       stringr::str_detect(str, "advanced") ~ "\U0001f336\U0001f336\U0001f336: advanced-level",
