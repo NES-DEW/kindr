@@ -55,6 +55,7 @@ training_sessions <- function(tr_type = "all",
       dplyr::filter(start > lubridate::today() + lubridate::days(1)) |>
       dplyr::filter(start < end_date)
   } else {
+    start_date <- as.character(start_date)
 
     start_date <- lubridate::ymd(start_date) + lubridate::days(1)
 
