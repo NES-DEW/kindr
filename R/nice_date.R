@@ -1,3 +1,12 @@
+#' Make a friendly date from date/datetime
+#'
+#' @param date A date/datetime
+#'
+#' @return a nice (and standard for KIND) date string in the format "Tue 9th September 2025"
+#' @export
+#'
+#' @examples nice_date(lubridate::today())
+
 nice_date <- function(date){
 
   if(lubridate::is.Date(date)) {
