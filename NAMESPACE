@@ -3,4 +3,6 @@
 export(bullet_list)
 export(chilli_adder)
 export(feedback_url)
+export(nice_date)
+export(read_teams_att)
 export(training_sessions)

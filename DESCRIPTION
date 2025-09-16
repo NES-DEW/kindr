@@ -1,6 +1,6 @@
 Package: KINDR
 Title: A Package for Making KIND Network Training Materials
-Version: 0.1.6
+Version: 0.2.0
 Authors@R: 
     person("Brendan", "Clarke", , "brendan.clarke2@nhs.scot", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6159-4928"))
@@ -22,5 +22,7 @@ Imports:
     glue,
     kableExtra,
     lubridate, 
+    readr,
     scales,
+    stringi,
     stringr
