@@ -131,7 +131,7 @@ training_sessions <- function(tr_type = "all",
   } else if(output_type == "DT") {
 
     output |>
-      DT::datatable(escape = FALSE, filter = "top")
+      DT::datatable(escape = FALSE, filter = "top", rownames = F)
 
   } else {
     output
