@@ -48,6 +48,8 @@ vimeo_thumb <- function(topic, speaker, logo = "https://raw.githubusercontent.co
       magick::image_write(paste0(fs::path_sanitize(topic), "_", fs::path_sanitize(speaker), ".png"))
   }
 
+  output
+
 }
 
 
