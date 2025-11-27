@@ -8,7 +8,8 @@ vimeo_thumb(
   topic,
   speaker,
   logo =
-    "https://raw.githubusercontent.com/NES-DEW/dew-img/refs/heads/main/kind/kind_banner_700.png"
+    "https://raw.githubusercontent.com/NES-DEW/dew-img/refs/heads/main/kind/kind_banner_700.png",
+  save = F
 )
 }
 \arguments{
@@ -17,9 +18,11 @@ vimeo_thumb(
 \item{speaker}{Speaker name (and affiliation)}
 
 \item{logo}{A direct URL for any custom logo, e.g. for theme weeks}
+
+\item{save}{whether to save a png in working directory}
 }
 \value{
-saves png thumbnail in working directory
+magick image (and possibly png in working directory)
 }
 \description{
 Make a thumbnail from title and speaker information for Vimeo
@@ -27,4 +30,5 @@ Make a thumbnail from title and speaker information for Vimeo
 \examples{
 
 vimeo_thumb("Open Source in NHS Lothian", "Zena Trendell (NHS Lothian)  \nJules Augley (NHS Lothian)", "https://raw.githubusercontent.com/NES-DEW/dew-img/refs/heads/main/kind/kind_banner_700_osw.png")
+vimeo_thumb("Open Source in NHS Lothian", "Zena Trendell (NHS Lothian)  \nJules Augley (NHS Lothian)", "https://raw.githubusercontent.com/NES-DEW/dew-img/refs/heads/main/kind/kind_banner_700_osw.png", save = T)
 }
