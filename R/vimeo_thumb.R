@@ -53,4 +53,3 @@ vimeo_thumb <- function(topic, speaker, logo = "https://raw.githubusercontent.co
 }
 
 
-
