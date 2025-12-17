@@ -14,7 +14,7 @@ kind_links <- function(){
   * [Subscribe to our mailing list](https://forms.office.com/pages/responsepage.aspx?id=veDvEDCgykuAnLXmdF5JmpopIZB9ynRJnrPUHVFccipURjM2NkZJUkhGOFlQRjQxRFhVUTgwT0UwVyQlQCN0PWcu) to receive a weekly update about our training and activities
   * Visit our [training mini-site](https://nes-dew.github.io/KIND-training/) to find out about our free technical training, including Excel, Power BI, R, and SQL
   * Find out more about the [digitally-enabled workforce programme](https://learn.nes.nhs.scot/53965/digitally-enabled-workforce), which operates the KIND network
-  * Come to our [4th annual unconference](https://events.teams.microsoft.com/event/a073ff15-25fe-4259-8155-3c71990f2cbc@10efe0bd-a030-4bca-809c-b5e6745e499a) on Wednesday 17th December 2025
+  * Come to our [5th annual unconference](https://events.teams.microsoft.com/event/d30c6b97-95cd-47d6-a729-80053cf48872@10efe0bd-a030-4bca-809c-b5e6745e499a) on Thursday 17th December 2026
 
   ")
 }
