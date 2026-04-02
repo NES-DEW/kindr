@@ -14,7 +14,7 @@
 #' vimeo_thumb("Open Source in NHS Lothian", "Zena Trendell (NHS Lothian)  \nJules Augley (NHS Lothian)", "https://raw.githubusercontent.com/NES-DEW/dew-img/refs/heads/main/kind/kind_banner_700_osw.png")
 #' vimeo_thumb("Open Source in NHS Lothian", "Zena Trendell (NHS Lothian)  \nJules Augley (NHS Lothian)", "https://raw.githubusercontent.com/NES-DEW/dew-img/refs/heads/main/kind/kind_banner_700_osw.png", save = T)
 
-vimeo_thumb <- function(topic, speaker, logo = "https://raw.githubusercontent.com/NES-DEW/dew-img/refs/heads/main/kind/kind_banner_700.png", save = F){
+vimeo_thumb <- function(topic, speaker, logo = "https://raw.githubusercontent.com/NES-DEW/dew-img/refs/heads/main/kind/KLN_banner_v08b_short_200.png", save = F){
 
   if(nchar(topic) > 55| nchar(speaker) > 60) stop("Topic or speaker names are wayyyy too long")
 
