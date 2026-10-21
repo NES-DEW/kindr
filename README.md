@@ -1,3 +1,3 @@
 # kindr
 
-Tools for building R teaching materials for NHS Education for Scotland's KIND network
+Tools for building R teaching materials for PSD Scotland's KIND network
