@@ -7,7 +7,7 @@
 training_sessions(
   tr_type = "all",
   start_date = "today",
-  end_date = "2026-12-31",
+  end_date = "2043-12-31",
   session_level = "all",
   hide_area = FALSE,
   n = 0,
